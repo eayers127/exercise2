@@ -10,6 +10,8 @@
       </select>
     </div>
     <div v-if="workoutType === 'run'">
+      <label for="distance">Distance (in miles):</label>
+      <input type="number" id="distance" v-model.number="distance">
       <label for="duration">Duration (in minutes):</label>
       <input type="number" id="duration" v-model.number="duration">
       <label for="calories">Calories Burned:</label>
@@ -34,6 +36,7 @@ export default {
   data() {
     return {
       workoutType: '',
+      distance: '',
       duration: '',
       calories: '',
       description: '',
@@ -45,7 +48,7 @@ export default {
   computed: {
     isValidForm() {
       if (this.workoutType === 'run') {
-        return this.duration && this.calories;
+        return this.distance && this.duration && this.calories;
       } else if (this.workoutType === 'weights') {
         return this.description && this.reps && this.sets && this.weight;
       } else {
@@ -57,6 +60,7 @@ export default {
     submitForm() {
       const workout = {
         type: this.workoutType,
+        distance: this.distance,
         duration: this.duration,
         calories: this.calories,
         description: this.description,
@@ -69,6 +73,7 @@ export default {
     },
     clearForm() {
       this.workoutType = '';
+      this.distance = '';
       this.duration = '';
       this.calories = '';
       this.description = '';
