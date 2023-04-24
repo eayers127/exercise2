@@ -1,5 +1,6 @@
 
 <template>
+  <div><h1 class="welcome">Record your Workout using Vue</h1></div>
   <form @submit.prevent="submitForm">
     <div>
       <label for="workout-type">Type of Workout:</label>
@@ -27,7 +28,7 @@
       <label for="weight">Weight:</label>
       <input type="number" id="weight" v-model.number="weight">
     </div>
-    <button type="submit" :disabled="!isValidForm">Add Workout</button>
+    <button class="submit" type="submit" :disabled="!isValidForm">Add Workout</button>
   </form>
 </template>
 
@@ -85,6 +86,9 @@ export default {
 }
 </script>
   <style scoped>
+  .welcome{
+    color: blue;
+  }
 label{
     padding: 1rem;
     display: flex;
@@ -92,10 +96,21 @@ label{
 input{
     justify-content: end;
     margin-left: 1rem;
+    padding: 1rem;
 }
 .workoutForm{
     display: block;
     width: 300px;
+}
+button.submit{
+  padding: 1rem;
+  margin: 1rem;
+  background-color: green;
+  color: white;
+  width: 100%;
+}
+button.submit:disabled{
+  background-color: gray;
 }
 </style>
   

@@ -4,7 +4,7 @@
     <table>
       <thead>
         <tr>
-          <th>Type</th>
+          <th v-if="showTable">Type</th>
           <th v-if="showDistance">Distance (miles)</th>
           <th v-if="showDuration">Duration (min)</th>
           <th v-if="showCalories">Calories Burned</th>
@@ -12,7 +12,7 @@
           <th v-if="showReps">Reps</th>
           <th v-if="showSets">Sets</th>
           <th v-if="showWeight">Weight (lbs)</th>
-          <th>Delete</th>
+          <th v-if="showTable">Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +45,9 @@
       }
     },
     computed: {
+      showTable() {
+        return this.workouts.some(w => w.type === 'run' || 'weights');
+      },
       showDistance() {
         return this.workouts.some(w => w.type === 'run');
       },
@@ -70,6 +73,7 @@
     methods: {
       deleteWorkout(index) {
         this.$emit('delete', index);
+        this.workouts.splice(index, 1);
       }
     }
   }
